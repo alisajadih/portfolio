@@ -1,10 +1,24 @@
-@import './shared/fonts';
+@import "./shared/fonts";
 
+@import "./index";
+
+@import "./header";
 html,
 body {
-  font-family: "Montserrat" !important;
+  font-family: "Montserrat";
+  height: 100%;
+  width: 100%;
 }
 
-.customeElementFromFile {
-  color: red;
+.self-typed {
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 31px;
+  color: white;
+}
+.absolute {
+  position: absolute;
+}
+.base-page {
+  padding-top: 150px;
 }
