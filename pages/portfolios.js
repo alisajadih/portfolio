@@ -14,6 +14,7 @@ class Portfolios extends React.Component {
     } catch (e) {
       console.log(e);
     }
+    console.log(posts);
     return { posts: posts.splice(0, 10) };
   }
 
@@ -36,6 +37,7 @@ class Portfolios extends React.Component {
   };
   render() {
     const { posts } = this.props;
+    console.log(posts, "in rede3r");
 
     return (
       <BaseLayout>

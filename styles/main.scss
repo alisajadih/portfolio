@@ -1,3 +1,10 @@
+@import './shared/fonts';
+
+html,
+body {
+  font-family: "Montserrat" !important;
+}
+
 .customeElementFromFile {
-    color : red
+  color: red;
 }
