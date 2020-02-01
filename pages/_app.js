@@ -14,13 +14,12 @@ MyApp.getInitialProps = async appContext => {
 
   //secure way
   const user = process.browser
-    ? auth0.clientAuth()
-    : auth0.serverAuth(appContext.ctx.req);
+    ? await auth0.clientAuth()
+    : await auth0.serverAuth(appContext.ctx.req);
 
   const appProps = await App.getInitialProps(appContext);
 
   const auth = { user, isAuthenticated: !!user };
-  console.log(auth);
 
   return { ...appProps, auth };
 };
