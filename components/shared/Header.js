@@ -1,14 +1,8 @@
-
-
 import React from "react";
 
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-} from "reactstrap";
+import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 import Link from "next/link";
+import auth0 from "../../services/auth0";
 const BsNavLink = ({ route, title }) => {
   return (
     <Link href={route}>
@@ -17,8 +11,30 @@ const BsNavLink = ({ route, title }) => {
   );
 };
 
+const Login = () => {
+  return (
+    <span
+      onClick={auth0.login}
+      className="nav-link port-navbar-link clickable"
+    >
+      Login
+    </span>
+  );
+};
+const Logout = () => {
+  return (
+    <span
+      onClick={auth0.logout}
+      className="nav-link port-navbar-link clickable"
+    >
+      Logout
+    </span>
+  );
+};
+
 export default class Header extends React.Component {
   render() {
+    const { isAuthenticated, user } = this.props.auth;
     return (
       <Navbar
         color="trasparent"
@@ -46,6 +62,25 @@ export default class Header extends React.Component {
           <NavItem className="port-navbar-item">
             <BsNavLink route="/cv" title="CV" />
           </NavItem>
+          {/* {!auth0.isAuthenticated() ? (
+            <NavItem className="port-navbar-item">
+              <Login />
+            </NavItem>
+          ) : (
+            <NavItem className="port-navbar-item">
+              <Logout />
+            </NavItem>
+          )} */}
+          {!isAuthenticated && (
+            <NavItem className="port-navbar-item">
+              <Login />
+            </NavItem>
+          )}
+          {isAuthenticated && (
+            <NavItem className="port-navbar-item">
+              <Logout />
+            </NavItem>
+          )}
         </Nav>
       </Navbar>
     );

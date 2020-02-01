@@ -5,7 +5,7 @@ import BasePage from "../components/BasePage";
 class CV extends React.Component {
   render() {
     return (
-      <BaseLayout>
+      <BaseLayout {...this.props.auth}>
         <BasePage>
           <div>im CV page...</div>
         </BasePage>

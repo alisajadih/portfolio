@@ -9,8 +9,9 @@ class Index extends React.Component {
   }
 
   render() {
+    const { isAuthenticated, user } = this.props.auth;
     return (
-      <BaseLayout className="cover">
+      <BaseLayout className="cover" {...this.props.auth}>
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />
@@ -41,16 +42,21 @@ class Index extends React.Component {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Seyed Ali Sajadi.
-                    Get informed, collaborate and discover projects I
-                    was working on!
+                    {isAuthenticated ? (
+                      <strong>
+                        <span style={{fontWeight:'700'}}> {user.name} </span>
+                      </strong>
+                    ) : null}
+                    Welcome to the portfolio website of Seyed Ali
+                    Sajadi. Get informed, collaborate and discover
+                    projects I was working on!
                   </h1>
                 </div>
                 <Typed
                   className="self-typed"
                   loop
-                  typeSpeed={50}
-                  backSpeed={20}
+                  typeSpeed={20}
+                  backSpeed={40}
                   strings={["Simple Js Lover", "React Developer"]}
                   backDelay={1000}
                   fadeOut={false}

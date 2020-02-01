@@ -5,7 +5,7 @@ import BasePage from "../components/BasePage";
 class Blogs extends React.Component {
   render() {
     return (
-      <BaseLayout>
+      <BaseLayout {...this.props.auth}>
         <BasePage>
           <div>im Blog page...</div>
         </BasePage>
