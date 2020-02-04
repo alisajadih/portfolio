@@ -35,12 +35,14 @@ const Logout = () => {
 export default class Header extends React.Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { className } = this.props;  
+
     return (
       <Navbar
         color="trasparent"
         dark
         expand="md"
-        className="port-navbar port-default absolute"
+        className={`port-navbar port-nav-base absolute ${className}`}
       >
         <NavbarBrand
           href="/"

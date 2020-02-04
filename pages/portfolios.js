@@ -40,7 +40,7 @@ class Portfolios extends React.Component {
 
     return (
       <BaseLayout {...this.props.auth}>
-        <BasePage>
+        <BasePage title='Portfolios'>
           <div>im Portfolios page ...</div>
           <ul>{this.renderPosts(posts)}</ul>
         </BasePage>

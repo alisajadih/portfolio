@@ -5,11 +5,17 @@ const BaseLayout = ({
   className,
   children,
   isAuthenticated,
-  user
+  user,
+  ...props
 }) => {
+  const headerType = props.headerType || "default";
   return (
     <div className="layout-container">
-      <Header auth={{ isAuthenticated, user }} />
+      <Header
+        className={`port-nav-${headerType}`}
+        auth={{ isAuthenticated, user }}
+      />
+
       <main className={`cover ${className}`}>
         <div className="wrapper">{children}</div>
       </main>

@@ -1,5 +1,7 @@
 @import "./shared/fonts";
 
+@import "./shared/colors";
+
 @import "./index";
 
 @import "./header";
@@ -19,9 +21,23 @@ body {
 .absolute {
   position: absolute;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
 .base-page {
   padding-top: 150px;
-}
-.clickable{
-    cursor: pointer;
+  color: white;
+  background-color: #ecedee;
+  min-height: 100vh;
+
+  .page-header {
+    .page-header-title {
+      font-weight: 700;
+      color: black;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
 }
