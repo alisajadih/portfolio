@@ -3,6 +3,7 @@ import BaseLayout from "../components/layouts/BaseLayout";
 import axios from "axios";
 import Link from "next/link";
 import BasePage from "../components/BasePage";
+import { Row, Card, CardHeader, CardBody, CardTitle, CardText, Col } from "reactstrap";
 
 class Portfolios extends React.Component {
   static async getInitialProps() {
@@ -21,18 +22,31 @@ class Portfolios extends React.Component {
   // <Link href="/p/[id]" as={`/p/${props.id}`}></Link>   next v9
   // <Link as={`/portfolio/${p.id}`} href={`/portfolio?title=${p.title}`}> next old version
   renderPosts = posts => {
-    return posts.map(p => (
-      <li key={p.id}>
-        <Link as={`/portfolio/${p.id}`} href="/portfolio/[id]">
-          <a>{p.title}</a>
-        </Link>
-        {/* <Link
-          as={`/portfolio/${p.id}`}
-          href={`/portfolio?id=${p.id}`}
-        >
-          <a>{p.title}</a>
-        </Link> */}
-      </li>
+    return posts.map((p,index) => (
+      <Col md="4">
+        <React.Fragment key={index}>
+          <span>
+            <Card className="portfolio-card">
+              <CardHeader className="portfolio-card-header">
+                Some Position {index}
+              </CardHeader>
+              <CardBody>
+                <p className="portfolio-card-city">
+                  {" "}
+                  Some Location {index}{" "}
+                </p>
+                <CardTitle className="portfolio-card-title">
+                  Some Company {index}
+                </CardTitle>
+                <CardText className="portfolio-card-text">
+                  Some Description {index}
+                </CardText>
+                <div className="readMore"> </div>
+              </CardBody>
+            </Card>
+          </span>
+        </React.Fragment>
+      </Col>
     ));
   };
   render() {
@@ -40,9 +54,8 @@ class Portfolios extends React.Component {
 
     return (
       <BaseLayout {...this.props.auth}>
-        <BasePage title='Portfolios'>
-          <div>im Portfolios page ...</div>
-          <ul>{this.renderPosts(posts)}</ul>
+        <BasePage title="Portfolios" className="portfolio-page">
+          <Row>{this.renderPosts(posts)}</Row>
         </BasePage>
       </BaseLayout>
     );
