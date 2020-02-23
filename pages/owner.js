@@ -14,4 +14,4 @@ class owner extends Component {
     );
   }
 }
-export default withAuth("siteOwner")(owner);
+export default withAuth('siteOwner')(owner);

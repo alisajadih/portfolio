@@ -22,14 +22,14 @@ export default function(role) {
           if (role && role === user[`${namespace}role`]) {
             isAuthorized = true;
           } else {
-            isAuthorized = true;
+            isAuthorized = false;
           }
         }
         //user loged in but not access to this page
         if (isAuthenticated && !isAuthorized) {
           return (
             <BaseLayout {...this.props.auth}>
-              <BasePage>
+              <BasePage className="base-page">
                 <h1>
                   Sorry ! Access Denied , you dont have a permission
                   to access this page :D
@@ -43,7 +43,7 @@ export default function(role) {
         if (!isAuthenticated) {
           return (
             <BaseLayout {...this.props.auth}>
-              <BasePage>
+              <BasePage className="base-page">
                 <h1>Sorry ! Please Login to acces this page !</h1>
               </BasePage>
             </BaseLayout>
