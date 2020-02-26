@@ -1,19 +1,19 @@
 // Render Prop
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Alert } from "reactstrap";
 import PortInput from "../form/PortInput";
 import PortDate from "../form/PortDate";
 
 const validateInputs = values => {
   let errors = {};
   Object.entries(values).forEach(([key, value]) => {
-    if (!values[key] && key !== "startDate" && key !== "endDate") {
+    if (!values[key] && key !== "endDate") {
       errors[key] = `${key} is required !`;
     }
   });
-  const startDate = values.startDate;
-  const endDate = values.endDate;
+  const startDate = new Date(values.startDate);
+  const endDate = values.endDate ? new Date(values.endDate) : "";
   if (
     startDate &&
     endDate &&
@@ -24,22 +24,12 @@ const validateInputs = values => {
   return errors;
 };
 
-const INITIAL_VALUES = {
-  title: "",
-  company: "",
-  location: "",
-  position: "",
-  description: "",
-  startDate: "",
-  endDate: ""
-};
-
-const PortfolioCreateForm = props => (
+const PortfolioCreateForm = ({ initialValues, onSubmit, error }) => (
   <div>
     <Formik
-      initialValues={INITIAL_VALUES}
+      initialValues={initialValues}
       validate={validateInputs}
-      onSubmit={props.onSubmit}
+      onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
         <Form>
@@ -77,14 +67,17 @@ const PortfolioCreateForm = props => (
           <Field
             name="startDate"
             component={PortDate}
+            initialDate={initialValues.startDate}
             label="Start date:"
           />
           <Field
             name="endDate"
             component={PortDate}
+            initialDate={initialValues.endDate}
             label="End date:"
             canDisable={true}
           />
+          {error && <Alert color="danger">{error}</Alert>}
 
           <Button
             color="success"

@@ -3,8 +3,10 @@ import auth0 from "../services/auth0";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/main.scss";
 
-function MyApp({ Component, pageProps, auth }) {
-  return <Component {...pageProps} auth={auth} />;
+const nameSpace = "http://localhost:3000";
+
+function MyApp({ Component, pageProps, auth, ...rest }) {
+  return <Component {...pageProps} auth={auth} {...rest} />;
 }
 
 MyApp.getInitialProps = async appContext => {
@@ -19,9 +21,11 @@ MyApp.getInitialProps = async appContext => {
 
   const appProps = await App.getInitialProps(appContext);
 
+  const isSiteOwner =
+    user && user[nameSpace + "/role"] === "siteOwner";
   const auth = { user, isAuthenticated: !!user };
 
-  return { ...appProps, auth };
+  return { isSiteOwner, ...appProps, auth };
 };
 
 export default MyApp;
